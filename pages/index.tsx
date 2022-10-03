@@ -1,12 +1,18 @@
-import { Typography } from '@mui/material';
-
 import type { NextPage } from 'next';
+
+import { Grid } from '@mui/material';
+
 import { Layout } from '../components/layouts';
+import { CardTitle } from '../components/ui/';
 
 const HomePage: NextPage = () => {
   return (
     <Layout>
-      <Typography variant="h1">Hello World</Typography>
+      <Grid container spacing={2}>
+        <CardTitle title="Pendientes" />
+        <CardTitle title="En Progreso" />
+        <CardTitle title="Completadas" />
+      </Grid>
     </Layout>
   );
 };
