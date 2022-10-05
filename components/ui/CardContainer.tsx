@@ -7,7 +7,7 @@ interface Props {
   title: string;
 }
 
-export const CardConteiner: FC<Props> = ({ title }) => {
+export const CardContainer: FC<Props> = ({ title }) => {
   return (
     <Grid item xs={12} sm={4}>
       <Card sx={{ height: 'calc(100vh - 100px)' }}>
