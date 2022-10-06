@@ -5,6 +5,7 @@ import { UIProvider } from '../context/ui';
 import { EntriesProvider } from '../context/entries';
 
 import { lightTheme, darkTheme } from '../theme';
+import 'animate.css';
 import '../styles/globals.css';
 
 function MyApp({ Component, pageProps }: AppProps) {

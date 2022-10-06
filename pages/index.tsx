@@ -3,15 +3,17 @@ import type { NextPage } from 'next';
 import { Grid } from '@mui/material';
 
 import { Layout } from '../components/layouts';
-import { CardTitle } from '../components/ui/';
+import { CardContainer, NewEntry } from '../components/ui/';
 
 const HomePage: NextPage = () => {
   return (
     <Layout>
       <Grid container spacing={2}>
-        <CardTitle title="Pendientes" />
-        <CardTitle title="En Progreso" />
-        <CardTitle title="Completadas" />
+        <CardContainer title="Pendientes" status="pending">
+          <NewEntry />
+        </CardContainer>
+        <CardContainer title="En Progreso" status="in-progress" />
+        <CardContainer title="Completadas" status="finished" />
       </Grid>
     </Layout>
   );

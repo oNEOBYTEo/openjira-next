@@ -14,20 +14,21 @@ const ENTRIES_INITIAL_STATE: EntriesState = {
     {
       _id: uuidv4(),
       description:
-        'Ullamco aliquip ea consectetur in ex nostrud in fugiat ad minim.',
+        'Pendiente: aliquip ea consectetur in ex nostrud in fugiat ad minim.',
       status: 'pending',
       createdAt: Date.now(),
     },
     {
       _id: uuidv4(),
-      description: 'Ipsum cupidatat aliquip quis velit laboris do voluptate.',
+      description:
+        'En-Progreso cupidatat aliquip quis velit laboris do voluptate.',
       status: 'in-progress',
       createdAt: Date.now() - 1000000,
     },
     {
       _id: uuidv4(),
       description:
-        'Esse in id est voluptate ut magna exercitation exercitation cillum laborum eu sit officia.',
+        'Terminadas: in id est voluptate ut magna exercitation exercitation cillum laborum eu sit officia.',
       status: 'finished',
       createdAt: Date.now() - 100000,
     },
@@ -37,8 +38,26 @@ const ENTRIES_INITIAL_STATE: EntriesState = {
 export const EntriesProvider: FC<PropsWithChildren> = ({ children }) => {
   const [state, dispatch] = useReducer(entriesReducer, ENTRIES_INITIAL_STATE);
 
+  const addNewEntry = (description: string) => {
+    const newEntry: Entry = {
+      _id: uuidv4(),
+      description,
+      createdAt: Date.now(),
+      status: 'pending',
+    };
+
+    dispatch({ type: '[Entry] - Add-Entry', payload: newEntry });
+  };
+
   return (
-    <EntriesContext.Provider value={{ ...state }}>
+    <EntriesContext.Provider
+      value={{
+        ...state,
+
+        // Methods
+        addNewEntry,
+      }}
+    >
       {children}
     </EntriesContext.Provider>
   );

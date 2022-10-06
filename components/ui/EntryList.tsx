@@ -1,8 +1,10 @@
-import { List, Paper } from '@mui/material';
 import { FC, useContext, useMemo } from 'react';
-import { EntriesContext } from '../../context/entries';
-import { EntryStatus } from '../../interfaces';
+
+import { List, Paper } from '@mui/material';
+
 import { EntryCard } from './';
+import { EntryStatus } from '../../interfaces';
+import { EntriesContext } from '../../context/entries';
 
 interface Props {
   status: EntryStatus;
