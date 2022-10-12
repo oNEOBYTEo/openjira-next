@@ -5,7 +5,10 @@ import { Entry, IEntry } from '../../../models';
 
 type Data = { message: string } | IEntry;
 
-export default function (req: NextApiRequest, res: NextApiResponse<Data>) {
+export default function EntryHandler(
+  req: NextApiRequest,
+  res: NextApiResponse<Data>
+) {
   const { id } = req.query;
   if (!mongoose.isValidObjectId(id)) {
     return res.status(400).json({ message: 'El id no es valido: ' + id });
