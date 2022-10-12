@@ -6,7 +6,7 @@ Para correr localmente, se necesita la base de datos
 docker-compose up -d
 ```
 
-- El -d, significa \_\_detach\_\_
+- El -d, significa **detach**
 
 ## Mongo URL Local:
 
@@ -14,9 +14,16 @@ docker-compose up -d
 mongodb://localhost:27017/entriesdb
 ```
 
+## Reconstuir los módelos de node y levantar Next
+
+```
+yarn install
+yarn dev
+```
+
 ## Configurar las variables de entorno
 
-Renombrar el archivo \_\_.env.template\_\_ a \_\_.env\_\_
+Renombrar el archivo **.env.template** a **.env**
 
 ## Llenar la base de datos con información de pruebas
 
