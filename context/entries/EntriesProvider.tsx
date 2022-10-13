@@ -21,7 +21,7 @@ export const EntriesProvider: FC<PropsWithChildren> = ({ children }) => {
 
   const addNewEntry = async (description: string) => {
     const { data } = await entriesApi.post<Entry>('/entries', { description });
-    dispatch({ type: '[Entry] - Add-Entry', payload: data });
+    dispatch({ type: '[Entry] Add-Entry', payload: data });
   };
 
   const updateEntry = async (
@@ -62,6 +62,41 @@ export const EntriesProvider: FC<PropsWithChildren> = ({ children }) => {
     }
   };
 
+  const deleteEntry = async (entry: Entry, showSnackbar = false) => {
+    try {
+      const { data } = await entriesApi.delete<Entry>(`/entries/${entry._id}`);
+
+      dispatch({
+        type: '[Entry] Delete-entry',
+        payload: data,
+      });
+
+      if (showSnackbar) {
+        enqueueSnackbar('Entrada borrada correctamente', {
+          variant: 'success',
+          autoHideDuration: 1500,
+          anchorOrigin: {
+            vertical: 'top',
+            horizontal: 'right',
+          },
+        });
+      }
+      router.push('/');
+    } catch (error) {
+      console.log({ error });
+      if (showSnackbar) {
+        enqueueSnackbar('Error, al borrar la entrada', {
+          variant: 'error',
+          autoHideDuration: 1500,
+          anchorOrigin: {
+            vertical: 'top',
+            horizontal: 'right',
+          },
+        });
+      }
+    }
+  };
+
   const refreshEntries = async () => {
     const { data } = await entriesApi.get<Entry[]>('/entries');
     dispatch({ type: '[Entry] Refresh-Data', payload: data });
@@ -79,6 +114,7 @@ export const EntriesProvider: FC<PropsWithChildren> = ({ children }) => {
         // Methods
         addNewEntry,
         updateEntry,
+        deleteEntry,
       }}
     >
       {children}
