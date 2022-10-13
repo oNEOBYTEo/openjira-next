@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const entriesApi = axios.create({
-  baseURL: '/api',
+  baseURL: 'https://openjira-next.vercel.app/api',
 });
 
 export default entriesApi;
